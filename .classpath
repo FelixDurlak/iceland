@@ -18,6 +18,18 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/javax.mail-1.5.2.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/postgresql-9.3-1101.jdbc41.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/mapcode-1.40.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-simple-1.7.7.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="D:/eclipse ADAP/plugins/org.junit_4.11.0.v201303080030/junit.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://junit.sourceforge.net/junit3.8.1/javadoc/"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="junit/"/>
+			<accessrule kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

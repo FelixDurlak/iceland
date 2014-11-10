@@ -23,6 +23,7 @@ package org.wahlzeit.handlers;
 import java.util.*;
 import java.io.*;
 
+import org.wahlzeit.location.*;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
@@ -58,6 +59,30 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
 
+		double latitude;
+		double longitude;
+
+		try
+		{
+			latitude = Double.parseDouble(us.getAndSaveAsString(args, Photo.LATITUDE));
+			longitude = Double.parseDouble(us.getAndSaveAsString(args, Photo.LONGITUDE));
+		} catch(Exception e)
+		{
+			latitude = 0.0;
+			longitude = 0.0;
+		}
+
+		Location location;
+		String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
+
+		if(mapcode != ""  &&  (latitude == 0.0 && longitude == 0.0) || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
+		{
+			location = new MapcodeLocation(mapcode);
+		} else {
+			
+			location = new GpsLocation(latitude, longitude);
+		}
+
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
 			return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
@@ -74,6 +99,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		
 			User user = (User) us.getClient();
 			user.addPhoto(photo); 
+			
+			photo.setLocation(location);
 			
 			photo.setTags(new Tags(tags));
 

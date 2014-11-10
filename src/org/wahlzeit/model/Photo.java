@@ -25,6 +25,7 @@ import java.net.*;
 
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
+import org.wahlzeit.location.*;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -59,6 +60,11 @@ public class Photo extends DataObject {
 	public static final int MAX_PHOTO_HEIGHT = 600;
 	public static final int MAX_THUMB_PHOTO_WIDTH = 105;
 	public static final int MAX_THUMB_PHOTO_HEIGHT = 150;
+	public static final String LOCATION = "location";
+	public static final String MAPCODE = "mapcode";
+	public static final String LATITUDE = "latitude";
+	public static final String LONGITUDE = "longitude";
+
 	
 	/**
 	 * 
@@ -110,6 +116,14 @@ public class Photo extends DataObject {
 	/**
 	 * 
 	 */
+	
+	
+	protected Location location;
+	
+	/**
+	 * 
+	 */
+	
 	public Photo() {
 		id = PhotoId.getNextId();
 		incWriteCount();
@@ -167,6 +181,10 @@ public class Photo extends DataObject {
 		creationTime = rset.getLong("creation_time");
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
+		
+		double latitude = rset.getDouble("latitude");
+		double longitude = rset.getDouble("longitude");
+		location = new GpsLocation(latitude, longitude);
 	}
 	
 	/**
@@ -186,7 +204,10 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);		
+		rset.updateLong("creation_time", creationTime);	
+		double[] gpscoords = location.getGpsCoordinates();
+		rset.updateDouble("latitude", gpscoords[0]);
+		rset.updateDouble("longitude", gpscoords[1]);
 	}
 
 	/**
@@ -480,5 +501,22 @@ public class Photo extends DataObject {
 	public long getCreationTime() {
 		return creationTime;
 	}
-	
+
+	/**
+	 * 
+	 * @methodtype get
+	 */
+	public String getLocation()
+	{
+		return location.asString();
+	}
+
+	/**
+	 * 
+	 * @methodtype set
+	 */
+	public void setLocation(Location location)
+	{
+		this.location = location;
+	}
 }
