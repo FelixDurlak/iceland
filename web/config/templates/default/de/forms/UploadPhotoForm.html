@@ -1,34 +1,62 @@
-<form action="uploadPhotoForm.form" method="post" enctype="multipart/form-data" name="uploadPhotoForm">
+<form action="uploadPhotoForm.form" method="post"
+	enctype="multipart/form-data" name="uploadPhotoForm">
 
 	<h2>Ein Foto hochladen!</h2>
-	<p><b>{$message}</b></p>
-
-	<table class="border"><tr><td class="spacer"><table class="form">
-		<tr>
-			<td class="twoCol1">Dateiname:&nbsp;</td>
-			<td class="twoCol2"><input type="file" name="file" value="" size="32" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Foto-Tags:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Mapcode&nbsp;<br>(internationales Format):&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="mapcode" value="{$mapcode}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">GPS-Koordinaten:&nbsp;</td>
-			<td class="twoCol2">Breitengrad:&nbsp;<input type="text" name="latitude" value="{$latitude}" size="9" />&nbsp;Längengrad:&nbsp;<input type="text" name="longitude" value="{$longitude}" size="9" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">&nbsp;</td>
-			<td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
-		</tr>
-	</table></td></tr></table>
-	
 	<p>
-		If you need to upload many photos at once, 
-		please <a href="contact.html">contact us</a>!
+		<b>{$message}</b>
+	</p>
+
+	<table class="border">
+		<tr>
+			<td class="spacer"><table class="form">
+					<tr>
+						<td class="twoCol1">Dateiname:&nbsp;</td>
+						<td class="twoCol2"><input type="file" name="file" value=""
+							size="32" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Foto-Tags:&nbsp;</td>
+						<td class="twoCol2"><input type="text" name="tags"
+							value="{$tags}" size="48" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Mapcode&nbsp;<br>(internationales
+							Format):&nbsp;
+						</td>
+						<td class="twoCol2"><input type="text" name="mapcode"
+							value="{$mapcode}" size="48" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">GPS-Koordinaten:&nbsp;</td>
+						<td class="twoCol2">Breitengrad:&nbsp;<input type="text"
+							name="latitude" value="{$latitude}" size="9" />&nbsp;Längengrad:&nbsp;<input
+							type="text" name="longitude" value="{$longitude}" size="9" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Kategorie:Foto Motiv&nbsp;</td>
+						<td class="twoCol2">
+							<p>
+								<select name="image_motif_category" value="{$image_motif_category}" size="1">
+									<option>Wasserfall</option>
+									<option>Pflanze</option>
+									<option>Vulkan</option>
+									<option>Gletscher</option>
+									<option>Tier</option>
+								</select>
+							</p>
+						</td>
+					<tr>
+						<td class="twoCol1">&nbsp;</td>
+						<td class="twoCol2"><input type="submit" name="upload"
+							value="Upload!" /></td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+
+	<p>
+		If you need to upload many photos at once, please <a
+			href="contact.html">contact us</a>!
 	</p>
 
 </form>

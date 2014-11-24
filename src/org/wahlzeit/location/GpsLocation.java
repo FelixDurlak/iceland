@@ -4,7 +4,7 @@ import com.mapcode.MapcodeCodec;
 import com.mapcode.Mapcode;
 import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
- 
+
 
 public class GpsLocation extends AbstractLocation
 {

@@ -64,6 +64,7 @@ public class Photo extends DataObject {
 	public static final String MAPCODE = "mapcode";
 	public static final String LATITUDE = "latitude";
 	public static final String LONGITUDE = "longitude";
+	public static final String IMAGE_MOTIV_CATEGORY = "image_motif_category";
 
 	
 	/**

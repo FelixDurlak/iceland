@@ -22,6 +22,7 @@ package org.wahlzeit.handlers;
 
 import java.util.*;
 
+import org.wahlzeit.icelandPhoto.IcelandPhoto;
 import org.wahlzeit.location.GpsLocation;
 import org.wahlzeit.location.Location;
 import org.wahlzeit.model.*;
@@ -67,7 +68,8 @@ public class AdminUserPhotoFormHandler extends AbstractWebFormHandler {
 		
 		double latitude;
 		double longitude;
-
+		String imageMotivCategory = us.getAndSaveAsString(args, Photo.IMAGE_MOTIV_CATEGORY);
+		
 		try
 		{
 			latitude = Double.parseDouble(us.getAndSaveAsString(args, Photo.LATITUDE));
@@ -87,6 +89,8 @@ public class AdminUserPhotoFormHandler extends AbstractWebFormHandler {
 		}
 		
 		photo.setLocation(location);
+		
+		((IcelandPhoto) photo).getImageMotifCategory().setImageMotifCategory(imageMotivCategory);
 	
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
 		photo.setTags(new Tags(tags));

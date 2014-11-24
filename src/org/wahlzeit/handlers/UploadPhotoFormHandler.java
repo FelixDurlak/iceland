@@ -23,6 +23,7 @@ package org.wahlzeit.handlers;
 import java.util.*;
 import java.io.*;
 
+import org.wahlzeit.icelandPhoto.IcelandPhoto;
 import org.wahlzeit.location.*;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
@@ -61,6 +62,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 
 		double latitude;
 		double longitude;
+		String imageMotivCategory = us.getAndSaveAsString(args, Photo.IMAGE_MOTIV_CATEGORY);
+		
 
 		try
 		{
@@ -101,6 +104,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			user.addPhoto(photo); 
 			
 			photo.setLocation(location);
+			
+			((IcelandPhoto) photo).getImageMotifCategory().setImageMotifCategory(imageMotivCategory);
 			
 			photo.setTags(new Tags(tags));
 

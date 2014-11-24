@@ -24,17 +24,17 @@ public class MapcodeLocation extends AbstractLocation
 	{
 		Point point;
 		double[] gpsCoordinates = new double[2];
-		
-			try {
-				point = MapcodeCodec.decode(mapcode);
-				gpsCoordinates = new double[]{point.getLatDeg(), point.getLonDeg()};
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnknownMapcodeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		try {
+			point = MapcodeCodec.decode(mapcode);
+			gpsCoordinates = new double[]{point.getLatDeg(), point.getLonDeg()};
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnknownMapcodeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return gpsCoordinates;
 	}

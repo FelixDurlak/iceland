@@ -31,7 +31,8 @@ CREATE TABLE photos (
 	no_votes integer,
 	creation_time bigint,
 	latitude decimal,
-    longitude decimal
+    longitude decimal,
+    image_motif_category text
 );
 
 CREATE TABLE tags (
