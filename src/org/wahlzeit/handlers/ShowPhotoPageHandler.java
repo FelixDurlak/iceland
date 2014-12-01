@@ -168,7 +168,7 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 		page.addWritable(Photo.CAPTION, caption);
 		
 		 if(photo instanceof IcelandPhoto) {
-			 caption.addString(IcelandPhoto.IMAGE_MOTIF_CATEGORY, ((IcelandPhoto) photo).getImageMotifCategory().getImageMotifCategoryAsString());
+			 caption.addString(IcelandPhoto.IMAGE_MOTIF_CATEGORY, ((IcelandPhoto) photo).getImageMotifCategory().fullName);
 			 }
 	}
 
