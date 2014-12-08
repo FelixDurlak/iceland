@@ -16,8 +16,15 @@ public class MapcodeLocation extends AbstractLocation
 	}
 	public MapcodeLocation(String mapcode)
 	{
+		
+		// precondition
+		assert(mapcode != null);
+		
 		locationType = "Mapcode";
 		this.mapcode = mapcode;
+		
+		// postcondition
+		assert(this.mapcode.equals(mapcode));
 	}
 	@Override
 	public double[] getGpsCoordinates()
@@ -29,10 +36,8 @@ public class MapcodeLocation extends AbstractLocation
 			point = MapcodeCodec.decode(mapcode);
 			gpsCoordinates = new double[]{point.getLatDeg(), point.getLonDeg()};
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnknownMapcodeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -41,22 +46,40 @@ public class MapcodeLocation extends AbstractLocation
 	@Override
 	public String getMapcode()
 	{
+		
+		// precondition
+		assert(mapcode != null);
+		
 		return mapcode;
 	}
 	@Override
 	public void readInMapcode(String mapcode)
 	{
+		
+		// precondition
+		assert(mapcode != null);
+		
 		this.mapcode = mapcode;
 	}
 	@Override
 	protected void doReadInGpsCoordinates(double[] gpsCoordinates)
 	{
+		
+		// precondition
+		assert((Math.abs(gpsCoordinates[0]) <= 90) && (Math.abs(gpsCoordinates[1]) <= 180));
+		
 		Mapcode mapcode = MapcodeCodec.encodeToInternational(gpsCoordinates[0], gpsCoordinates[1]);
 		this.mapcode = mapcode.toString();
+		
+		// postcondition
+		assert(this.mapcode.equals(mapcode.toString()));
 	}
 	@Override
 	public String asString()
 	{
+		
+		// precondition
+		assert(mapcode != null);
 		return mapcode;
 	}
 }

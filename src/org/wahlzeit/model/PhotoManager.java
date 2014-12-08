@@ -24,6 +24,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+import org.wahlzeit.icelandPhoto.IcelandPhotoFactory;
 import org.wahlzeit.main.*;
 import org.wahlzeit.services.*;
 
@@ -89,7 +90,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	public PhotoManager() {
-		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
+		photoTagCollector = IcelandPhotoFactory.getInstance().createPhotoTagCollector();
 	}
 	
 	/**
@@ -137,7 +138,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
-		return PhotoFactory.getInstance().createPhoto(rset);
+		return IcelandPhotoFactory.getInstance().createPhoto(rset);
 	}
 	
 	/**

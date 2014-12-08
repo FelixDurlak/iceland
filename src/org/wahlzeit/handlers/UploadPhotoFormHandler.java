@@ -61,8 +61,9 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
 
-		double latitude;
-		double longitude;
+		double latitude = 0;
+		double longitude = 0;
+		boolean noGPS = false;
 		String imageMotivCategory = us.getAndSaveAsString(args, Photo.IMAGE_MOTIV_CATEGORY);
 		
 
@@ -72,14 +73,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			longitude = Double.parseDouble(us.getAndSaveAsString(args, Photo.LONGITUDE));
 		} catch(Exception e)
 		{
-			latitude = 0.0;
-			longitude = 0.0;
+			noGPS = true;
 		}
 
 		Location location;
 		String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
 
-		if(mapcode != ""  &&  (latitude == 0.0 && longitude == 0.0) || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
+		if(mapcode != ""  &&  noGPS || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
 		{
 			location = new MapcodeLocation(mapcode);
 		} else {
