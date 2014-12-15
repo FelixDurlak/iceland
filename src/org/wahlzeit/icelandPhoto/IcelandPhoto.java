@@ -8,9 +8,7 @@ import org.wahlzeit.model.PhotoId;
 
 public class IcelandPhoto extends Photo {
 	
-	public static final String IMAGE_MOTIF_CATEGORY = "image_motif_category";
-	
-	protected ImageMotifCategory motifCategory = ImageMotifCategory.Oth;
+	protected ImageMotif imageMotif;
 
 	public IcelandPhoto() {
 		super();
@@ -26,46 +24,55 @@ public class IcelandPhoto extends Photo {
 		super(rset);
 	}
 
-	public ImageMotifCategory getImageMotifCategory() {
-		
-		// precondition
-		assert(motifCategory != null);
-		
-		return motifCategory;
-	}
-
-	public void setImageMotifCategory(ImageMotifCategory motifCategory) {
-		
-		// precondition
-		assert(motifCategory != null);
-		
-		this.motifCategory = motifCategory;
-	}
 
 	@Override
-	public void writeOn(ResultSet rset) throws SQLException {
+	public void writeOn(ResultSet rset) throws SQLException {		
 		
 		// precondition
 		assert(rset != null);
 		
 		super.writeOn(rset);
-		if(motifCategory != null){
-			rset.updateString(IMAGE_MOTIF_CATEGORY, motifCategory.fullName);
+		if(imageMotif != null){
+			rset.updateString(ImageMotif.IMAGE_MOTIF_CATEGORY, imageMotif.getMotifCategory().fullName);
+			rset.updateString(ImageMotif.IMAGE_MOTIF_NAME, imageMotif.getName());
 		}		
 	}
 
 	@Override
 	public void readFrom(ResultSet rset) throws SQLException {
-		
+	
 		// precondition
 		assert(rset != null);
 		
 		super.readFrom(rset);
-		if(motifCategory != null){
-			motifCategory = ImageMotifCategory.getFromString(rset.getString(IMAGE_MOTIF_CATEGORY));
+		if(imageMotif != null){
+			imageMotif.setMotifCategory(ImageMotifCategory.getFromString(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
+			imageMotif.setName(ImageMotif.IMAGE_MOTIF_NAME);
 		}
 		// postcondition
-		assert(motifCategory.fullName.equals(rset.getString(IMAGE_MOTIF_CATEGORY)));
+		assert(imageMotif.getMotifCategory().fullName.equals(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
+	}
+
+
+	/**
+	 * @return the imageMotif
+	 */
+	public ImageMotif getImageMotif() {
+		// precondition
+		assert(imageMotif != null);
+		
+		return imageMotif;
+	}
+
+
+	/**
+	 * @param imageMotif the imageMotif to set
+	 */
+	public void setImageMotif(ImageMotif imageMotif) {
+		// precondition
+		assert(imageMotif != null);
+		
+		this.imageMotif = imageMotif;
 	}
 
 }

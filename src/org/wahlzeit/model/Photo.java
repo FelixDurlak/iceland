@@ -64,7 +64,6 @@ public class Photo extends DataObject {
 	public static final String MAPCODE = "mapcode";
 	public static final String LATITUDE = "latitude";
 	public static final String LONGITUDE = "longitude";
-	public static final String IMAGE_MOTIV_CATEGORY = "image_motif_category";
 
 	
 	/**
@@ -118,8 +117,8 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	
-	
-	protected Location location;
+	// default value
+	protected Location location = new GpsLocation(0.0, 0.0);
 	
 	/**
 	 * 

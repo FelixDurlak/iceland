@@ -23,8 +23,8 @@ package org.wahlzeit.handlers;
 import java.util.*;
 
 import org.wahlzeit.icelandPhoto.IcelandPhoto;
+import org.wahlzeit.icelandPhoto.ImageMotif;
 import org.wahlzeit.model.*;
-import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 
@@ -167,8 +167,8 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 		caption.addString(Photo.LOCATION, photo.getLocation());
 		page.addWritable(Photo.CAPTION, caption);
 		
-		 if(photo instanceof IcelandPhoto) {
-			 caption.addString(IcelandPhoto.IMAGE_MOTIF_CATEGORY, ((IcelandPhoto) photo).getImageMotifCategory().fullName);
+		 if((photo instanceof IcelandPhoto) && ((IcelandPhoto)photo).getImageMotif() != null) {
+			 caption.addString(ImageMotif.IMAGE_MOTIF_CATEGORY, ((IcelandPhoto)photo).getImageMotif().toString());
 			 }
 	}
 

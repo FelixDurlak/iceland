@@ -63,4 +63,8 @@ public class IcelandPhotoFactory extends PhotoFactory {
 		return new IcelandPhoto(rs);
 	}
 
+	/**
+	 *
+	 */
+
 }

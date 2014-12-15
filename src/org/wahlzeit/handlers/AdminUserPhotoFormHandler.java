@@ -23,9 +23,11 @@ package org.wahlzeit.handlers;
 import java.util.*;
 
 import org.wahlzeit.icelandPhoto.IcelandPhoto;
+import org.wahlzeit.icelandPhoto.ImageMotif;
 import org.wahlzeit.icelandPhoto.ImageMotifCategory;
 import org.wahlzeit.location.GpsLocation;
 import org.wahlzeit.location.Location;
+import org.wahlzeit.location.MapcodeLocation;
 import org.wahlzeit.model.*;
 import org.wahlzeit.webparts.*;
 
@@ -67,9 +69,11 @@ public class AdminUserPhotoFormHandler extends AbstractWebFormHandler {
 		String id = us.getAndSaveAsString(args, "photoId");
 		Photo photo = PhotoManager.getPhoto(id);
 		
-		double latitude;
-		double longitude;
-		String imageMotivCategory = us.getAndSaveAsString(args, Photo.IMAGE_MOTIV_CATEGORY);
+		double latitude = 0;
+		double longitude = 0;
+		boolean noGPS = false;
+		String imageMotifCategory = us.getAndSaveAsString(args, ImageMotif.IMAGE_MOTIF_CATEGORY);
+		String imageMotifName = us.getAndSaveAsString(args, ImageMotif.IMAGE_MOTIF_NAME);
 		
 		try
 		{
@@ -77,21 +81,34 @@ public class AdminUserPhotoFormHandler extends AbstractWebFormHandler {
 			longitude = Double.parseDouble(us.getAndSaveAsString(args, Photo.LONGITUDE));
 		} catch(Exception e)
 		{
-			latitude = 0.0;
-			longitude = 0.0;
+			noGPS = true;
 		}
 
 		String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
 		Location location = new GpsLocation(latitude, longitude);
 
-		if(mapcode != ""  &&  (latitude == 0.0 && longitude == 0.0) || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
+		if(mapcode != ""  &&  noGPS || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
 		{
-			location.readInMapcode(mapcode);
+			location = new MapcodeLocation(mapcode);
+		} else {
+			
+			location = new GpsLocation(latitude, longitude);
 		}
 		
 		photo.setLocation(location);
 		
-		((IcelandPhoto) photo).setImageMotifCategory(ImageMotifCategory.getFromString(imageMotivCategory));
+		ImageMotif imageMotif = new ImageMotif();
+		
+		try {
+			imageMotif.setMotifCategory(ImageMotifCategory.getFromString(imageMotifCategory));
+			imageMotif.setName(imageMotifName);
+			IcelandPhoto icelandPhoto = (IcelandPhoto)photo;
+			icelandPhoto.setImageMotif(imageMotif);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 	
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);

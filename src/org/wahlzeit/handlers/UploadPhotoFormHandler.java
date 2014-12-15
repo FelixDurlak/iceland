@@ -24,6 +24,7 @@ import java.util.*;
 import java.io.*;
 
 import org.wahlzeit.icelandPhoto.IcelandPhoto;
+import org.wahlzeit.icelandPhoto.ImageMotif;
 import org.wahlzeit.icelandPhoto.ImageMotifCategory;
 import org.wahlzeit.location.*;
 import org.wahlzeit.model.*;
@@ -64,7 +65,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		double latitude = 0;
 		double longitude = 0;
 		boolean noGPS = false;
-		String imageMotivCategory = us.getAndSaveAsString(args, Photo.IMAGE_MOTIV_CATEGORY);
+		String imageMotifCategory = us.getAndSaveAsString(args, ImageMotif.IMAGE_MOTIF_CATEGORY);
+		String imageMotifName = us.getAndSaveAsString(args, ImageMotif.IMAGE_MOTIF_NAME);
 		
 
 		try
@@ -106,7 +108,17 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			
 			photo.setLocation(location);
 			
-			((IcelandPhoto) photo).setImageMotifCategory(ImageMotifCategory.getFromString(imageMotivCategory));
+			ImageMotif imageMotif = new ImageMotif();
+			
+			try {
+				imageMotif.setMotifCategory(ImageMotifCategory.getFromString(imageMotifCategory));
+				imageMotif.setName(imageMotifName);
+				IcelandPhoto icelandPhoto = (IcelandPhoto)photo;
+				icelandPhoto.setImageMotif(imageMotif);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			photo.setTags(new Tags(tags));
 

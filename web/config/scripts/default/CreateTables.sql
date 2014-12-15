@@ -15,6 +15,7 @@ CREATE TABLE users (
 	creation_time bigint
 );
 
+
 CREATE TABLE photos (
 	id integer PRIMARY KEY,
 	owner_id integer REFERENCES users(id),
@@ -32,7 +33,8 @@ CREATE TABLE photos (
 	creation_time bigint,
 	latitude decimal,
     longitude decimal,
-    image_motif_category text
+	image_motif_category text,
+	image_motif_name text
 );
 
 CREATE TABLE tags (
