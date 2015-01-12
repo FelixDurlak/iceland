@@ -1,7 +1,9 @@
 package org.wahlzeit.icelandPhoto;
 
-
 import java.util.Objects;
+
+//This class is part of the Type Object Collaboration (imageMotif has the field imageMotifCategory)
+//This class is part of the IcelandPhoto / ImageMotif Collaboration (IcelandPhoto has the field imageMotif)
 
 public class ImageMotif{
 	
@@ -12,6 +14,7 @@ public class ImageMotif{
 	private ImageMotifCategory motifCategory = ImageMotifCategory.Oth;
 	private String name = "unnamed";
 	
+	//Type Object Collaboration
 
 	public String toString() {
 		return motifCategory.fullName + " (name: " + name + ")";
@@ -24,7 +27,8 @@ public class ImageMotif{
 				&& Objects.equals(motifCategory, imageMotif.motifCategory);
 	}
 
-
+	// IcelandPhoto / ImageMotif Collaboration
+	
 	/**
 	 * @return the motifCategory
 	 */

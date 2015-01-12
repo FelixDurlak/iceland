@@ -8,11 +8,20 @@ import org.wahlzeit.model.PhotoFactory;
 import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.SysLog;
 
+//This class is part of the Manager Collaboration (PhotoManager creates the instance of IcelandPhotoFactory)
+//This class is part of the Factory Collaboration (IcelandPhoto creation is controlled by IcelandPhotoFactory)
+
 public class IcelandPhotoFactory extends PhotoFactory {
 	
 
 	private static IcelandPhotoFactory instance = null;
-
+	
+	protected IcelandPhotoFactory() {
+		super();
+	}
+	
+	// Manager Collaboration
+	
 	/**
 	 * Public singleton access method.
 	 */
@@ -36,12 +45,8 @@ public class IcelandPhotoFactory extends PhotoFactory {
 		instance = icelandPhotoFactory;
 	}
 
-
-	protected IcelandPhotoFactory() {
-		super();
-	}
-
-
+	// Factory Collaboration
+	
 	/**
 	 * @methodtype factory
 	 */

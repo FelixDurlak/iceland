@@ -6,9 +6,16 @@ import java.sql.SQLException;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
+//This class is part of the IcelandPhoto / ImageMotif Collaboration (IcelandPhoto has the field imageMotif)
+//This class is part of the Factory Collaboration (IcelandPhoto creation is controlled by IcelandPhotoFactory)
+//This class is part of the Serializer Collaboration (because it extends Photo which extends DataObject)
+
 public class IcelandPhoto extends Photo {
-	
+
 	protected ImageMotif imageMotif;
+
+
+	// Factory Collaboration
 
 	public IcelandPhoto() {
 		super();
@@ -24,13 +31,14 @@ public class IcelandPhoto extends Photo {
 		super(rset);
 	}
 
+	// Serializer Collaboration and IcelandPhoto / ImageMotif Collaboration
 
 	@Override
 	public void writeOn(ResultSet rset) throws SQLException {		
-		
+
 		// precondition
 		assert(rset != null);
-		
+
 		super.writeOn(rset);
 		if(imageMotif != null){
 			rset.updateString(ImageMotif.IMAGE_MOTIF_CATEGORY, imageMotif.getMotifCategory().fullName);
@@ -40,10 +48,10 @@ public class IcelandPhoto extends Photo {
 
 	@Override
 	public void readFrom(ResultSet rset) throws SQLException {
-	
+
 		// precondition
 		assert(rset != null);
-		
+
 		super.readFrom(rset);
 		if(imageMotif != null){
 			imageMotif.setMotifCategory(ImageMotifCategory.getFromString(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
@@ -51,8 +59,9 @@ public class IcelandPhoto extends Photo {
 		}
 		// postcondition
 		assert(imageMotif.getMotifCategory().fullName.equals(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
-	}
+	}	
 
+	// ImageMotif Collaboration
 
 	/**
 	 * @return the imageMotif
@@ -60,7 +69,7 @@ public class IcelandPhoto extends Photo {
 	public ImageMotif getImageMotif() {
 		// precondition
 		assert(imageMotif != null);
-		
+
 		return imageMotif;
 	}
 
@@ -71,7 +80,7 @@ public class IcelandPhoto extends Photo {
 	public void setImageMotif(ImageMotif imageMotif) {
 		// precondition
 		assert(imageMotif != null);
-		
+
 		this.imageMotif = imageMotif;
 	}
 
