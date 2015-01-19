@@ -14,11 +14,17 @@ public class GpsLocation extends AbstractLocation
 		locationType = "GPS Coordinates";
 		gpsCoordinates = new double[]{0.0, 0.0};
 	}
-	public GpsLocation(double[] gpsCoordinates)
+	public GpsLocation(double[] gpsCoordinates) throws GpsException
 	{
 		
 		// precondition
-		assert(Math.abs(gpsCoordinates[0]) <= 90 && Math.abs(gpsCoordinates[1]) <= 180);
+		if(Math.abs(gpsCoordinates[0]) > 90){
+			throw new GpsException("latitude is not in the range from -90 to 90");
+		}
+		if(Math.abs(gpsCoordinates[1]) > 180){
+			throw new GpsException("longitude is not in the range from -180 to 180");
+		}
+		
 		
 		locationType = "GPS Coordinates";
 		this.gpsCoordinates = gpsCoordinates;
@@ -26,11 +32,16 @@ public class GpsLocation extends AbstractLocation
 		// postcondition
 		assert(this.gpsCoordinates.equals(gpsCoordinates));
 	}
-	public GpsLocation(double lat, double lon)
+	public GpsLocation(double lat, double lon) throws GpsException
 	{
 		
 		// precondition
-		assert(Math.abs(lat) <= 90 && Math.abs(lon) <= 180);
+		if(Math.abs(lat) > 90){
+			throw new GpsException("latitude is not in the range from -90 to 90");
+		}
+		if(Math.abs(lon) > 180){
+			throw new GpsException("longitude is not in the range from -180 to 180");
+		}
 		
 		locationType = "GPS Coordinates";
 		gpsCoordinates = new double[]{lat, lon};

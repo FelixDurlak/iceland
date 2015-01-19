@@ -78,7 +78,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			noGPS = true;
 		}
 
-		Location location;
+		Location location = null;
 		String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
 
 		if(mapcode != ""  &&  noGPS || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
@@ -86,7 +86,11 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			location = new MapcodeLocation(mapcode);
 		} else {
 			
-			location = new GpsLocation(latitude, longitude);
+			try {
+				location = new GpsLocation(latitude, longitude);
+			} catch (GpsException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (!StringUtil.isLegalTagsString(tags)) {

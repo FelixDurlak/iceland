@@ -3,6 +3,7 @@ package org.wahlzeit.icelandPhoto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
 
@@ -38,12 +39,13 @@ public class IcelandPhoto extends Photo {
 
 		// precondition
 		assert(rset != null);
-
+		
 		super.writeOn(rset);
 		if(imageMotif != null){
 			rset.updateString(ImageMotif.IMAGE_MOTIF_CATEGORY, imageMotif.getMotifCategory().fullName);
 			rset.updateString(ImageMotif.IMAGE_MOTIF_NAME, imageMotif.getName());
-		}		
+		}	
+
 	}
 
 	@Override
@@ -51,12 +53,13 @@ public class IcelandPhoto extends Photo {
 
 		// precondition
 		assert(rset != null);
-
+		
 		super.readFrom(rset);
 		if(imageMotif != null){
 			imageMotif.setMotifCategory(ImageMotifCategory.getFromString(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
 			imageMotif.setName(ImageMotif.IMAGE_MOTIF_NAME);
 		}
+		
 		// postcondition
 		assert(imageMotif.getMotifCategory().fullName.equals(rset.getString(ImageMotif.IMAGE_MOTIF_CATEGORY)));
 	}	
@@ -66,7 +69,7 @@ public class IcelandPhoto extends Photo {
 	/**
 	 * @return the imageMotif
 	 */
-	public ImageMotif getImageMotif() {
+	public ImageMotif getImageMotif(){
 		// precondition
 		assert(imageMotif != null);
 
@@ -77,7 +80,7 @@ public class IcelandPhoto extends Photo {
 	/**
 	 * @param imageMotif the imageMotif to set
 	 */
-	public void setImageMotif(ImageMotif imageMotif) {
+	public void setImageMotif(ImageMotif imageMotif){
 		// precondition
 		assert(imageMotif != null);
 

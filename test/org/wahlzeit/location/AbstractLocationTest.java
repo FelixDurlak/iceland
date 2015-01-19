@@ -15,7 +15,12 @@ public class AbstractLocationTest extends TestCase {
 
 	public void setUp() {
 		mapcodeLocation = new MapcodeLocation(mapcode);
-		gpsLocation= new GpsLocation(lat, lon);
+		try {
+			gpsLocation= new GpsLocation(lat, lon);
+		} catch (GpsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -55,8 +60,16 @@ public class AbstractLocationTest extends TestCase {
 		double lat = 49.573802;
 		double lon = 11.028629;
 		double[] gpsCoordinates = new double[]{lat, lon};
-		gpsLocation.readInGpsCoordinates(gpsCoordinates);
-		mapcodeLocation.readInGpsCoordinates(gpsCoordinates);
+		try {
+			gpsLocation.readInGpsCoordinates(gpsCoordinates);
+		} catch (GpsException e) {
+			e.printStackTrace();
+		}
+		try {
+			mapcodeLocation.readInGpsCoordinates(gpsCoordinates);
+		} catch (GpsException e) {
+			e.printStackTrace();
+		}
 		assertTrue("gps coordinates of mapcodeLocation should be " + lat + ", " + lon + " but was " + mapcodeLocation.getGpsCoordinates()[0] + ", " + mapcodeLocation.getGpsCoordinates()[1] + 
 				" and gps coordinates of gpsLocation should be " + lat + ", " + lon + " but was " + gpsLocation.getGpsCoordinates()[0] + ", " + gpsLocation.getGpsCoordinates()[1], (lat == mapcodeLocation.getGpsCoordinates()[0]) && (lon == mapcodeLocation.getGpsCoordinates()[1]) && (lat == gpsLocation.getGpsCoordinates()[0]) && (lon == gpsLocation.getGpsCoordinates()[1]));
 	}
@@ -64,8 +77,16 @@ public class AbstractLocationTest extends TestCase {
 	public final void testSetGpsCoordinatesDoubleDouble() {
 		double lat = 49.573802;
 		double lon = 11.028629;
-		gpsLocation.readInGpsCoordinates(lat, lon);
-		mapcodeLocation.readInGpsCoordinates(lat, lon);
+		try {
+			gpsLocation.readInGpsCoordinates(lat, lon);
+		} catch (GpsException e) {
+			e.printStackTrace();
+		}
+		try {
+			mapcodeLocation.readInGpsCoordinates(lat, lon);
+		} catch (GpsException e) {
+			e.printStackTrace();
+		}
 		assertTrue("gps coordinates of mapcodeLocation should be " + lat + ", " + lon + " but was " + mapcodeLocation.getGpsCoordinates()[0] + ", " + mapcodeLocation.getGpsCoordinates()[1] + 
 				" and gps coordinates of gpsLocation should be " + lat + ", " + lon + " but was " + gpsLocation.getGpsCoordinates()[0] + ", " + gpsLocation.getGpsCoordinates()[1], (lat == mapcodeLocation.getGpsCoordinates()[0]) && (lon == mapcodeLocation.getGpsCoordinates()[1]) && (lat == gpsLocation.getGpsCoordinates()[0]) && (lon == gpsLocation.getGpsCoordinates()[1]));
 	}

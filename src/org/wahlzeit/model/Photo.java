@@ -117,8 +117,8 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	
-	// default value
-	protected Location location = new GpsLocation(0.0, 0.0);
+	// default values: 0.0, 0.0
+	protected Location location = new GpsLocation();
 	
 	/**
 	 * 
@@ -184,7 +184,11 @@ public class Photo extends DataObject {
 		
 		double latitude = rset.getDouble("latitude");
 		double longitude = rset.getDouble("longitude");
-		location = new GpsLocation(latitude, longitude);
+		try {
+			location = new GpsLocation(latitude, longitude);
+		} catch (GpsException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

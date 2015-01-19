@@ -25,6 +25,7 @@ import java.util.*;
 import org.wahlzeit.icelandPhoto.IcelandPhoto;
 import org.wahlzeit.icelandPhoto.ImageMotif;
 import org.wahlzeit.icelandPhoto.ImageMotifCategory;
+import org.wahlzeit.location.GpsException;
 import org.wahlzeit.location.GpsLocation;
 import org.wahlzeit.location.Location;
 import org.wahlzeit.location.MapcodeLocation;
@@ -85,14 +86,25 @@ public class AdminUserPhotoFormHandler extends AbstractWebFormHandler {
 		}
 
 		String mapcode = us.getAndSaveAsString(args, Photo.MAPCODE);
-		Location location = new GpsLocation(latitude, longitude);
+		Location location = null;
+		try {
+			location = new GpsLocation(latitude, longitude);
+		} catch (GpsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		if(mapcode != ""  &&  noGPS || (Math.abs(latitude) > 90 && Math.abs(longitude) > 180))
 		{
 			location = new MapcodeLocation(mapcode);
 		} else {
 			
-			location = new GpsLocation(latitude, longitude);
+			try {
+				location = new GpsLocation(latitude, longitude);
+			} catch (GpsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		photo.setLocation(location);

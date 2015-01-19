@@ -62,11 +62,16 @@ public class MapcodeLocation extends AbstractLocation
 		this.mapcode = mapcode;
 	}
 	@Override
-	protected void doReadInGpsCoordinates(double[] gpsCoordinates)
+	protected void doReadInGpsCoordinates(double[] gpsCoordinates) throws GpsException
 	{
 		
 		// precondition
-		assert((Math.abs(gpsCoordinates[0]) <= 90) && (Math.abs(gpsCoordinates[1]) <= 180));
+		if(Math.abs(gpsCoordinates[0]) > 90){
+			throw new GpsException("latitude is not in the range from -90 to 90");
+		}
+		if(Math.abs(gpsCoordinates[1]) > 180){
+			throw new GpsException("longitude is not in the range from -180 to 180");
+		}
 		
 		Mapcode mapcode = MapcodeCodec.encodeToInternational(gpsCoordinates[0], gpsCoordinates[1]);
 		this.mapcode = mapcode.toString();
