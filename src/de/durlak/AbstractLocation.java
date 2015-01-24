@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package de.durlak;
 
 public abstract class AbstractLocation implements Location
 {

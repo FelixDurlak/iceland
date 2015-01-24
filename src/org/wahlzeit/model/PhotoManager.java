@@ -24,9 +24,10 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
-import org.wahlzeit.icelandPhoto.IcelandPhotoFactory;
 import org.wahlzeit.main.*;
 import org.wahlzeit.services.*;
+
+import de.durlak.IcelandPhotoFactory;
 
 /**
  * A photo manager provides access to and manages photos.

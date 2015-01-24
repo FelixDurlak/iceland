@@ -22,11 +22,12 @@ package org.wahlzeit.handlers;
 
 import java.util.*;
 
-import org.wahlzeit.icelandPhoto.IcelandPhoto;
-import org.wahlzeit.icelandPhoto.ImageMotif;
 import org.wahlzeit.model.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
+
+import de.durlak.IcelandPhoto;
+import de.durlak.ImageMotif;
 
 /**
  * 

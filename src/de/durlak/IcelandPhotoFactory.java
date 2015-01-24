@@ -1,4 +1,4 @@
-package org.wahlzeit.icelandPhoto;
+package de.durlak;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

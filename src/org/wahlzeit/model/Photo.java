@@ -27,6 +27,10 @@ import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.location.*;
 
+import de.durlak.GpsException;
+import de.durlak.GpsLocation;
+import de.durlak.Location;
+
 /**
  * A photo represents a user-provided (uploaded) photo.
  * 

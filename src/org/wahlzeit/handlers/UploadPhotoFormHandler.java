@@ -23,14 +23,19 @@ package org.wahlzeit.handlers;
 import java.util.*;
 import java.io.*;
 
-import org.wahlzeit.icelandPhoto.IcelandPhoto;
-import org.wahlzeit.icelandPhoto.ImageMotif;
-import org.wahlzeit.icelandPhoto.ImageMotifCategory;
 import org.wahlzeit.location.*;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
+
+import de.durlak.GpsException;
+import de.durlak.GpsLocation;
+import de.durlak.IcelandPhoto;
+import de.durlak.ImageMotif;
+import de.durlak.ImageMotifCategory;
+import de.durlak.Location;
+import de.durlak.MapcodeLocation;
 
 /**
  * 

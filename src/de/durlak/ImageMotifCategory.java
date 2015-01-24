@@ -1,4 +1,4 @@
-package org.wahlzeit.icelandPhoto;
+package de.durlak;
 
 // This class is part of the Type Object Collaboration (imageMotif has the field imageMotifCategory)
 

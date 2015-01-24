@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package de.durlak;
 
 public interface Location
 {

@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package de.durlak;
 
 import com.mapcode.MapcodeCodec;
 import com.mapcode.Mapcode;

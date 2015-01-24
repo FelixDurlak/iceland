@@ -22,9 +22,10 @@ package org.wahlzeit.model;
 
 import java.util.*;
 
-import org.wahlzeit.icelandPhoto.IcelandPhotoFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
+
+import de.durlak.IcelandPhotoFactory;
 
 /**
  * 

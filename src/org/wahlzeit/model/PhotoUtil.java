@@ -26,8 +26,9 @@ import java.awt.image.*;
 
 import javax.imageio.*;
 
-import org.wahlzeit.icelandPhoto.IcelandPhotoFactory;
 import org.wahlzeit.services.*;
+
+import de.durlak.IcelandPhotoFactory;
 
 /**
  * PhotoUtil provides a set of utility functions to create defined images.

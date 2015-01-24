@@ -1,5 +1,9 @@
 package org.wahlzeit.location;
 
+import de.durlak.GpsException;
+import de.durlak.GpsLocation;
+import de.durlak.Location;
+import de.durlak.MapcodeLocation;
 import junit.framework.TestCase;
 
 
